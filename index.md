@@ -9,7 +9,7 @@ where appropriate -->
 
 This is the website for the JuliaHealth organization.
 
-We use the Julia programming language to improve medicine, health care, public health, and biomedical research.
+We use the Julia programming language to improve medicine, individual health, health care, public health, and biomedical research.
 
 Visit us on GitHub: [https://github.com/JuliaHealth](https://github.com/JuliaHealth)
 
