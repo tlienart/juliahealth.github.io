@@ -4,7 +4,7 @@
 
 # Related Organizations
 
-Here is a non-comprehensive list of organizations that develop and maintain open-source Julia packages related to the life sciences and health sciences:
+Here is a non-comprehensive list of organizations that develop and maintain open-source Julia packages related to the life sciences and health sciences.
 
 If you would like to add an organization to this list, please feel free to make a pull request.
 
