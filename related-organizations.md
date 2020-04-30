@@ -22,3 +22,4 @@ If you would like to add an organization to this list, please feel free to [make
 ## Companies
 
 * [Beacon Biosignals](https://github.com/beacon-biosignals) -  Intelligent brain monitoring technologies ([website](https://beacon.bio))
+* [PumasAI](https://pumas.ai/) - Pharmaceutical modeling and simulation
