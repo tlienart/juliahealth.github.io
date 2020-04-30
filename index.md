@@ -1,9 +1,6 @@
 @def title = "JuliaHealth"
 @def hasmath = true
 @def hascode = true
-<!-- Note: by default hasmath == true and hascode == false. You can change this in
-the config file by setting hasmath = false for instance and just setting it to true
-where appropriate -->
 
 # JuliaHealth
 
@@ -13,8 +10,8 @@ We use the Julia programming language to improve medicine, individual health, he
 
 Visit us on GitHub: [https://github.com/JuliaHealth](https://github.com/JuliaHealth)
 
-## Related organizations: BioJulia
+## See also: BioJulia
 
-Our friends and collegues in the BioJulia organization use Julia in bioinformatics and computational biology. Check out their website and visit them on GitHub.
+Our friends and colleagues in the BioJulia organization use Julia in biology, bioinformatics, and computational biology. Check out their website and visit them on GitHub.
 - Website: [https://biojulia.net](https://biojulia.net)
 - GitHub: [https://github.com/BioJulia](https://github.com/BioJulia)
