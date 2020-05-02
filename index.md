@@ -10,11 +10,9 @@ We use the Julia programming language to improve medicine, individual health, he
 
 Visit us on GitHub: [https://github.com/JuliaHealth](https://github.com/JuliaHealth)
 
-Post in the `Biology, Health, and Medicine` category on Discourse: [https://discourse.julialang.org/c/domain/bio/15](https://discourse.julialang.org/c/domain/bio/15)
+Post in the [Biology, Health, and Medicine category](https://discourse.julialang.org/c/domain/bio/15) on Discourse.
 
-Chat with us in the `#health-and-medicine` channel on Slack: [http://julialang.slack.com](http://julialang.slack.com) (get an invite at [https://slackinvite.julialang.org](https://slackinvite.julialang.org))
-
-
+Chat with us in the `#health-and-medicine` channel on [Slack](http://julialang.slack.com). (Get a Slack invite [here](https://slackinvite.julialang.org).)
 
 ## See also: BioJulia
 
