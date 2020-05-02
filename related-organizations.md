@@ -14,6 +14,7 @@ If you would like to add an organization to this list, please feel free to [make
 * [EcoJulia](https://github.com/EcoJulia) - Ecology ([website](https://ecojulia.github.io))
 * [JuliaHealth](https://github.com/JuliaHealth) – Medicine, individual health, health care, public health, biomedical research, and biomedical informatics ([website](https://juliahealth.org))
 * [JuliaNeuro](https://github.com/JuliaNeuro) - Neuroscience ([website](https://julianeuro.github.io))
+* [JuliaNeuroscience](https://github.com/JuliaNeuroscience) - Neuroscience
 * [MagneticResonanceImaging](https://github.com/MagneticResonanceImaging) - Magnetic resonance imaging
 
 ## Labs and research groups
