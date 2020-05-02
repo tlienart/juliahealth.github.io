@@ -12,7 +12,7 @@ Visit us on GitHub: [https://github.com/JuliaHealth](https://github.com/JuliaHea
 
 Post in the [Biology, Health, and Medicine category](https://discourse.julialang.org/c/domain/bio/15) on Discourse.
 
-Chat with us in the `#health-and-medicine` channel on [Slack](http://julialang.slack.com). (Get a Slack invite [here](https://slackinvite.julialang.org).)
+Chat with us in the `#health-and-medicine` channel on [Slack](https://julialang.slack.com). (Get a Slack invite [here](https://slackinvite.julialang.org).)
 
 ## See also: BioJulia
 
