@@ -4,6 +4,8 @@
 
 # JuliaHealth
 
+## JuliaHealth
+
 This is the website for the JuliaHealth organization.
 
 We use the Julia programming language to improve medicine, individual health, health care, public health, and biomedical research.
@@ -14,7 +16,7 @@ Post in the [Biology, Health, and Medicine category](https://discourse.julialang
 
 Chat with us in the `#health-and-medicine` channel on [Slack](https://julialang.slack.com). (Get a Slack invite [here](https://slackinvite.julialang.org).)
 
-## See also: BioJulia
+## BioJulia
 
 Our friends and colleagues in the BioJulia organization use Julia in biology, bioinformatics, and computational biology. Check out their website and visit them on GitHub.
 - Website: [https://biojulia.net](https://biojulia.net)
