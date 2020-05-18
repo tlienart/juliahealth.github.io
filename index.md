@@ -12,6 +12,8 @@ Visit us on GitHub: [https://github.com/JuliaHealth](https://github.com/JuliaHea
 
 Post in the [Biology, Health, and Medicine category](https://discourse.julialang.org/c/domain/bio/15) on Discourse.
 
+Join us in the `#biology-health-and-medicine` stream on [Zulip](https://julialang.zulipchat.com).
+
 Chat with us in the `#health-and-medicine` channel on [Slack](https://julialang.slack.com). (Get a Slack invite [here](https://slackinvite.julialang.org).)
 
 ## JuliaHealth packages
