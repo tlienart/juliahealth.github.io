@@ -1,0 +1,23 @@
+name: stagebot
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  stagebot:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+        pwd
+        mkdir foo
+        cd foo
+        pwd
+        git clone ${{ github.repository }} foobar
+        cd foobar
+        echo "${github.event.pull_request.head.repo.full_name}"
+        echo "${github.event.pull_request.head.repo}"
+        echo "${github.event.pull_request.head}"
+        pwd
+      - run: |
+        pwd
+        git branch --delete --force staging/pull_request/48
+        continue-on-error: true
