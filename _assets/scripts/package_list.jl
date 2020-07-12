@@ -98,7 +98,11 @@ end
                                                packages_to_exclude,
                                                packages_to_include)::Vector{Tuple{String, String, String}}
     owner = GitHub.owner(orgname; auth = auth)
-    return _gh_get_public_julia_packages(owner; auth = auth)
+    result =  _gh_get_public_julia_packages(owner;
+                                            auth = auth,
+                                            packages_to_exclude = packages_to_exclude,
+                                            packages_to_include = packages_to_include)
+    return result
 end
 
 @inline function _gh_should_i_include_this_package(repo::GitHub.Repo;
