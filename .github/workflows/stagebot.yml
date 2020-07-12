@@ -11,9 +11,7 @@ jobs:
       - run: export ISSUE_NUMBER="${{ github.event.issue.number }}"
 
       - run: export COMMIT_TO_STAGE=$(echo "stagebot stage e3320f###" | sed -E 's/stagebot stage (e3320f).*/\1/g')
-      - run: echo $COMMENT_BODY
-      - run: echo $ISSUE_NUMBER
-      - run: echo $COMMIT_TO_STAGE
+      - run: env
       - run: |
           pwd
           mkdir clones
