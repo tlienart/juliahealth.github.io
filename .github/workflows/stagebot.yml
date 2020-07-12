@@ -7,11 +7,12 @@ jobs:
     if: startsWith( 'stagebot stage foo', 'stagebot stage' )
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event.comment.body }}
-      - run: echo ${{ github.event.issue.number }}
-      - run: echo ${{ github.event.issue }}
-      - run: echo ${{ github.event }}
+      - run: export COMMENT_BODY="${{ github.event.comment.body }})"
+      - run: export ISSUE_NUMBER="${{ github.event.issue.number }}"
+
       - run: export COMMIT_TO_STAGE=$(echo "stagebot stage e3320f###" | sed -E 's/stagebot stage (e3320f).*/\1/g')
+      - run: echo $COMMENT_BODY
+      - run: echo $ISSUE_NUMBER
       - run: echo $COMMIT_TO_STAGE
       - run: |
           pwd
