@@ -1,9 +1,9 @@
-name: stagingbot
+name: StageBot
 on:
   issue_comment:
     types: [created]
 jobs:
-  stagingbot:
+  StageBot:
     if: startsWith( ${{ github.event.comment.body }}), 'stagebot foo' )
     runs-on: ubuntu-latest
     steps:
