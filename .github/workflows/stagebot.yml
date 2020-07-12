@@ -7,10 +7,11 @@ jobs:
     if: startsWith( 'stagebot stage foo', 'stagebot stage' )
     runs-on: ubuntu-latest
     steps:
-      - run: export COMMENT_BODY="${{ github.event.comment.body }})"
-      - run: export ISSUE_NUMBER="${{ github.event.issue.number }}"
-
-      - run: export COMMIT_TO_STAGE=$(echo "stagebot stage e3320f###" | sed -E 's/stagebot stage (e3320f).*/\1/g')
+      - run: echo "::set-env name=COMMENT_BODY::${{ github.event.comment.body }})"
+      - run: echo "::set-env name=ISSUE_NUMBER::yellow"
+      - run: |
+          export ENV_COMMIT_TO_STAGE=$(echo "stagebot stage e3320f###" | sed -E 's/stagebot stage (e3320f).*/\1/g')
+          echo "::set-env name=COMMIT_TO_STAGE::$ENV_COMMIT_TO_STAGE"
       - run: env
       - run: |
           pwd
