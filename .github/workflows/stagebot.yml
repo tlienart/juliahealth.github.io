@@ -10,7 +10,7 @@ jobs:
       - run: |
           export ENV_COMMIT_TO_STAGE=$(echo "${{ github.event.comment.body }})" | sed -E 's/stagebot stage (e3320f).*/\1/g')
           echo "::set-env name=COMMIT_TO_STAGE::$ENV_COMMIT_TO_STAGE"
-      - run: echo $ENV_COMMIT_TO_STAGE
+      - run: echo $COMMIT_TO_STAGE
       - run: echo ${{github.event.pull_request.head.repo.full_name}}
       - run: echo ${{github.event.pull_request.head.repo}}
       - run: |
@@ -18,6 +18,8 @@ jobs:
           cd clones
           git clone https://github.com/${{ github.repository }} REPOSITORY
           cd REPOSITORY
+          git remote add fork https://github.com/DilumAluthge/juliahealth.github.io
+          git fetch --all --prune
           git branch --delete --force staging/pull_request/${{ github.event.issue.number }} || echo "branch does not exist"
-          git checkout e3320f -b staging/pull_request/${{ github.event.issue.number }}
+          git checkout COMMITTHATDOESNOTEXIST -b staging/pull_request/${{ github.event.issue.number }}
           git push --force origin staging/pull_request/${{ github.event.issue.number }}
