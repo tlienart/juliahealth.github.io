@@ -72,6 +72,22 @@ end
     return endswith(_name, ".jl")
 end
 
+@inline function _gh_name_is_in_include_list(repo::GitHub.Repo;
+                                             auth = GitHub.AnonymousAuth(),
+                                             include)::Bool
+    name = _gh_name(repo; auth = auth)
+    return _gh_name_is_in_include_list(name; auth = auth, include = include)
+end
+
+@inline function _gh_name_is_in_include_list(name::AbstractString;
+                                             auth = GitHub.AnonymousAuth(),
+                                             include)::Bool
+    _name::String = convert(String, lowercase(strip(name)))::String
+    result = _name in include
+    @info("", name, include, result)
+    return result
+end
+
 @inline function _gh_organization_base_html_url(org::GitHub.Owner;
                                                 auth = GitHub.AnonymousAuth())::String
     return org.html_url.uri
@@ -79,20 +95,34 @@ end
 
 @inline function _gh_get_public_julia_packages(orgname::AbstractString;
                                                auth = GitHub.AnonymousAuth(),
-                                               exclude = String[])::Vector{Tuple{String, String, String}}
+                                               exclude,
+                                               include)::Vector{Tuple{String, String, String}}
     owner = GitHub.owner(orgname; auth = auth)
     return _gh_get_public_julia_packages(owner; auth = auth)
 end
 
+@inline function _gh_should_i_include_this_package(repo::GitHub.Repo;
+                                                   auth = GitHub.AnonymousAuth(),
+                                                   include)
+    if _gh_name_is_in_include_list(repo; auth = auth, include = include)
+        return true
+    end
+    is_public = _gh_is_public(repo; auth = auth)
+    is_julia_package = _gh_name_is_julia_package(repo; auth = auth)
+    result = is_public && is_julia_package
+    return result
+end
+
 @inline function _gh_get_public_julia_packages(org::GitHub.Owner;
                                                auth = GitHub.AnonymousAuth(),
-                                               exclude::Vector{String} = String[])::Vector{Tuple{String, String, String}}
-    _exclude::Vector{String} = convert(Vector{String}, strip.(exclude))::Vector{String}
+                                               packages_to_exclude::Vector{String} = String[],
+                                               packages_to_include::Vector{String} = String[])::Vector{Tuple{String, String, String}}
+    _packages_to_exclude::Vector{String} = convert(Vector{String}, strip.(exclude))::Vector{String}
+    _packages_to_include::Vector{String} = convert(Vector{String}, strip.(include))::Vector{String}
     repos = _gh_all_repos(org; auth = auth)
-    filter!(x -> ( (_gh_is_public(x; auth = auth)) && (_gh_name_is_julia_package(x; auth = auth)) ), repos)
-    # names = setdiff([r.name for r in repos], exclude)
-    # unique!(names)
-    # sort!(names)
+    @info("", repos)
+    filter!(x -> _gh_should_i_include_this_package(x; auth = auth, packages_to_include = _packages_to_include), repos)
+    @info("", repos)
     base_url = _gh_organization_base_html_url(org)
     name_to_info = Dict{String, Tuple{String, String, String}}()
     for r in repos
@@ -117,10 +147,12 @@ end
 
 @inline function _gh_julia_packages_to_markdown_content(orgname::AbstractString;
                                                         auth = GitHub.AnonymousAuth(),
-                                                        exclude = String[])::String
+                                                        exclude,
+                                                        packages_to_include)::String
     packages = _gh_get_public_julia_packages(orgname;
                                              auth = auth,
-                                             exclude = exclude)
+                                             exclude = exclude,
+                                             packages_to_include = packages_to_include)
     result = "\n"
     result *= "| Package | Description |\n"
     result *= "| ------- | ----------- |\n"
@@ -136,10 +168,12 @@ end
 @inline function _gh_julia_packages_to_markdown_file(orgname::AbstractString,
                                                      output_filename::AbstractString;
                                                      auth = GitHub.AnonymousAuth(),
-                                                     exclude = String[])::Nothing
+                                                     packages_to_exclude,
+                                                     packages_to_include)::Nothing
     content = _gh_julia_packages_to_markdown_content(orgname;
                                                      auth = auth,
-                                                     exclude = exclude)
+                                                     packages_to_exclude = packages_to_exclude,
+                                                     packages_to_include = packages_to_include)
     rm(output_filename; force = true)
     open(output_filename, "w") do io
         println(io, content)
@@ -152,10 +186,12 @@ auth = _gh_try_auth()
 @inline function generate_package_list(orgname::AbstractString,
                                        output_filename::AbstractString;
                                        auth = _gh_try_auth(),
-                                       exclude = String[])::Nothing
+                                       include,
+                                       exclude)::Nothing
     _gh_julia_packages_to_markdown_file(orgname::AbstractString,
                                         output_filename;
                                         auth = auth,
-                                        exclude = exclude)
+                                        packages_to_exclude = packages_to_exclude,
+                                        packages_to_include = packages_to_include)
     return nothing
 end
