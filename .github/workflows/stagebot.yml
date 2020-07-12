@@ -7,10 +7,10 @@ jobs:
     if: startsWith( 'stagebot stage foo', 'stagebot stage' )
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install -y pcregrep
       - run: |
-          echo "stagebot stage e33202f" | pcregrep -io1 '^stagebot stage (\w*)$'
+          export MYFOO=$(echo "stagebot stage e3320f###" | sed -E 's/stagebot stage (e3320f).*/\1/g')
       - run: |
+          echo $MYFOO
           pwd
           mkdir foo
           cd foo
