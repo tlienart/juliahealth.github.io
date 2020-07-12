@@ -7,20 +7,23 @@ jobs:
     if: startsWith( 'stagebot stage foo', 'stagebot stage' )
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install -y pcregrep
+      - run: echo "::set-env name=COMMENT_BODY::${{ github.event.comment.body }})"
+      - run: echo "::set-env name=ISSUE_NUMBER::yellow"
       - run: |
-          echo "stagebot stage e33202f" | pcregrep -io1 '^stagebot stage (\w*)$'
+          export ENV_COMMIT_TO_STAGE=$(echo "stagebot stage e3320f###" | sed -E 's/stagebot stage (e3320f).*/\1/g')
+          echo "::set-env name=COMMIT_TO_STAGE::$ENV_COMMIT_TO_STAGE"
+      - run: env
       - run: |
           pwd
-          mkdir foo
-          cd foo
+          mkdir clones
+          cd clones
           pwd
-          git clone ${{ github.repository }} foobar
-          cd foobar
-          echo "${github.event.pull_request.head.repo.full_name}"
-          echo "${github.event.pull_request.head.repo}"
-          echo "${github.event.pull_request.head}"
+          git clone https://github.com/${{ github.repository }} REPOSITORY
+          cd REPOSITORY
           pwd
+#       - run: echo "${github.event.pull_request.head.repo.full_name}"
+#       - run: echo "${github.event.pull_request.head.repo}"
+#       - run: echo "${github.event.pull_request.head}"
       - run: |
           pwd
           git branch --delete --force staging/pull_request/48
