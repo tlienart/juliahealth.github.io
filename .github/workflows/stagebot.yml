@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.event.comment.body }}
+      - run: echo ${{ github.event.issue.number }}
+      - run: echo ${{ github.event.issue }}
+      - run: echo ${{ github.event }}
       - run: export COMMIT_TO_STAGE=$(echo "stagebot stage e3320f###" | sed -E 's/stagebot stage (e3320f).*/\1/g')
       - run: echo $COMMIT_TO_STAGE
       - run: |
@@ -18,9 +21,9 @@ jobs:
           git clone https://github.com/${{ github.repository }} REPOSITORY
           cd REPOSITORY
           pwd
-      - run: echo "${github.event.pull_request.head.repo.full_name}"
-      - run: echo "${github.event.pull_request.head.repo}"
-      - run: echo "${github.event.pull_request.head}"
+#       - run: echo "${github.event.pull_request.head.repo.full_name}"
+#       - run: echo "${github.event.pull_request.head.repo}"
+#       - run: echo "${github.event.pull_request.head}"
       - run: |
           pwd
           git branch --delete --force staging/pull_request/48
