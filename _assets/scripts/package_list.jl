@@ -120,9 +120,7 @@ end
     _packages_to_exclude::Vector{String} = convert(Vector{String}, strip.(exclude))::Vector{String}
     _packages_to_include::Vector{String} = convert(Vector{String}, strip.(include))::Vector{String}
     repos = _gh_all_repos(org; auth = auth)
-    @info("", repos)
     filter!(x -> _gh_should_i_include_this_package(x; auth = auth, packages_to_include = _packages_to_include), repos)
-    @info("", repos)
     base_url = _gh_organization_base_html_url(org)
     name_to_info = Dict{String, Tuple{String, String, String}}()
     for r in repos
@@ -147,13 +145,17 @@ end
 
 @inline function _gh_julia_packages_to_markdown_content(orgname::AbstractString;
                                                         auth = GitHub.AnonymousAuth(),
-                                                        exclude,
+                                                        packages_to_exclude,
                                                         packages_to_include)::String
     packages = _gh_get_public_julia_packages(orgname;
                                              auth = auth,
-                                             exclude = exclude,
+                                             packages_to_exclude = packages_to_exclude,
                                              packages_to_include = packages_to_include)
     result = "\n"
+    println("packages_to_include")
+    println(packages_to_include)
+    println("packages_to_exclude")
+    println(packages_to_exclude)
     result *= "| Package | Description |\n"
     result *= "| ------- | ----------- |\n"
     for info in packages
