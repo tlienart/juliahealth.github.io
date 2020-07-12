@@ -4,14 +4,13 @@ on:
     types: [created]
 jobs:
   stagebot:
-    if: startsWith( 'stagebot stage foo', 'stagebot stage' )
+    if: startsWith( ${{ github.event.comment.body }}), 'stagebot foo' )
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::set-env name=COMMENT_BODY::${{ github.event.comment.body }})"
-      - run: echo "::set-env name=ISSUE_NUMBER::${{ github.event.issue.number }}"
       - run: |
-          export ENV_COMMIT_TO_STAGE=$(echo "stagebot stage e3320f###" | sed -E 's/stagebot stage (e3320f).*/\1/g')
+          export ENV_COMMIT_TO_STAGE=$(echo "${{ github.event.comment.body }})" | sed -E 's/stagebot stage (e3320f).*/\1/g')
           echo "::set-env name=COMMIT_TO_STAGE::$ENV_COMMIT_TO_STAGE"
+      - run: echo $ENV_COMMIT_TO_STAGE
       - run: echo ${{github.event.pull_request.head.repo.full_name}}
       - run: echo ${{github.event.pull_request.head.repo}}
       - run: |
