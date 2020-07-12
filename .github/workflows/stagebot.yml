@@ -11,8 +11,8 @@ jobs:
           export ENV_COMMIT_TO_STAGE=$(echo "${{ github.event.comment.body }})" | sed -E 's/stagebot stage (e3320f).*/\1/g')
           echo "::set-env name=COMMIT_TO_STAGE::$ENV_COMMIT_TO_STAGE"
       - run: echo $COMMIT_TO_STAGE
-      - run: echo ${{github.event.pull_request.head.repo.full_name}}
-      - run: echo ${{github.event.pull_request.head.repo}}
+      - run: echo ${{github.event.issue.head.repo.full_name}}
+      - run: echo ${{github.event.issue.head.repo}}
       - run: |
           mkdir clones
           cd clones
