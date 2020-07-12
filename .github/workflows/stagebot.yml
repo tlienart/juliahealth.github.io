@@ -4,6 +4,7 @@ on:
     types: [created]
 jobs:
   stagebot:
+    if: startsWith( 'stagebot stage foo', 'stagebot stage' )
     runs-on: ubuntu-latest
     steps:
       - run: |
