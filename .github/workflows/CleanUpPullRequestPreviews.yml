@@ -19,4 +19,4 @@ jobs:
       - name: CleanUpPullRequestPreviews.remove_old_previews
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: julia -e 'using CleanUpPullRequestPreviews; CleanUpPullRequestPreviews.remove_old_previews(; repo_main = "JuliaHealth/juliahealth.github.io", repo_previews = "git@github.com:JuliaHealth/juliahealth.github.io-previews.git", repo_previews_branch = "gh-pages")'
+        run: julia --project=.ci/ -e 'using CleanUpPullRequestPreviews; CleanUpPullRequestPreviews.remove_old_previews(; repo_main = "JuliaHealth/juliahealth.github.io", repo_previews = "git@github.com:JuliaHealth/juliahealth.github.io-previews.git", repo_previews_branch = "gh-pages")'
