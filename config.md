@@ -5,11 +5,11 @@ The website_* must be defined for the RSS to work
 -->
 @def website_title = "JuliaHealth"
 @def website_descr = "Official website of the JuliaHealth organization"
-@def website_url   = "https://juliahealth.org/"
+@def website_url   = get(ENV, "JULIA_FRANKLIN_WEBSITE_URL", "https://juliahealth.org/")
 
 @def author = "JuliaHealth contributors"
 @def title = "JuliaHealth"
-@def prepath = ""
+@def prepath = get(ENV, "JULIA_FRANKLIN_PREPATH", "")
 
 <!--
 Add here global latex commands to use throughout your
