@@ -9,6 +9,7 @@ on:
       - dev
   schedule:
     - cron: '00 00 * * *'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
