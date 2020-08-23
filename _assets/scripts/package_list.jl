@@ -54,6 +54,7 @@ end
                                  auth = GitHub.AnonymousAuth())::String
     description = repo.description
     if description === nothing
+        @error("No description for repo", repo)
         return ""
     end
     return description
