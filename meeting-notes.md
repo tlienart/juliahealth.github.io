@@ -2,13 +2,17 @@
 @def hasmath = true
 @def hascode = true 
 
+These are the public notes for the JuliaHealth Community.
+Notes are published publicly here and are available for comments and review on the [public HackMD](https://hackmd.io/@AQm1lp9PSPyir6IoTPAZeQ/SJNu_d3uh). 
+Additionally, the notes are [hosted publicly on the GitHub](https://github.com/JuliaHealth/juliahealth.github.io/blob/dev/meeting-notes.md) and are open for PRs or edits as needed.
+
 # June 30 2023
 
 ## Meeting Summary
 
 **In Attendance:** Jacob Zelko, Fareeda Abdelazeez, Zachary Christensen
 
-**Location:** Virtual
+**Location:** Monthly Community Call
 
 **Summary:** Discussed new members, upcoming JuliaCon, JuliaHealth Birds of a Feather discussion on topics like neural decoding and OMOP tooling, managing logistics for Julia organizations, and JuliaHealth PR reviews.
 
@@ -144,7 +148,7 @@
 
 **In Attendance:** Jacob Zelko, Dilum Aluthge, Asher Wasserman, Fareeda Abdelazeez, Kyle Beggs
 
-**Location:** Virtual 
+**Location:** Monthly Community Call
 
 **Summary:** First JuliaHealth community call to meet other Julians, learn how we can galvanize the Juliahealth Community, and open discussion on paths forward
 
