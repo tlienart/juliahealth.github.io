@@ -15,35 +15,35 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         persist-credentials: false
 
-    - name: Install SSH Client (pull request previews)
-      if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name
-      uses: webfactory/ssh-agent@v0.4.1
-      with:
-        ssh-private-key: ${{ secrets.FRANKLIN_PRIV_PREVIEW }}
+    # - name: Install SSH Client (pull request previews)
+    #   if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name
+    #   uses: webfactory/ssh-agent@v0.4.1
+    #   with:
+    #     ssh-private-key: ${{ secrets.FRANKLIN_PRIV_PREVIEW }}
 
-    - name: Install SSH Client (main)
-      if: github.event_name != 'pull_request'
-      uses: webfactory/ssh-agent@v0.4.1
-      with:
-        ssh-private-key: ${{ secrets.FRANKLIN_PRIV }}
+    # - name: Install SSH Client (main)
+    #   if: github.event_name != 'pull_request'
+    #   uses: webfactory/ssh-agent@v0.4.1
+    #   with:
+    #     ssh-private-key: ${{ secrets.FRANKLIN_PRIV }}
 
-    - name: Fix URLs for PR preview deployment (pull request previews)
-      if: github.event_name == 'pull_request'
-      run: |
-        echo "JULIA_FRANKLIN_WEBSITE_URL=https://juliahealth.org/juliahealth.github.io-previews/previews/PR${{ github.event.number }}/" >> $GITHUB_ENV
-        echo "JULIA_FRANKLIN_PREPATH=juliahealth.github.io-previews/previews/PR${{ github.event.number }}" >> $GITHUB_ENV
+    # - name: Fix URLs for PR preview deployment (pull request previews)
+    #   if: github.event_name == 'pull_request'
+    #   run: |
+    #     echo "JULIA_FRANKLIN_WEBSITE_URL=https://juliahealth.org/juliahealth.github.io-previews/previews/PR${{ github.event.number }}/" >> $GITHUB_ENV
+    #     echo "JULIA_FRANKLIN_PREPATH=juliahealth.github.io-previews/previews/PR${{ github.event.number }}" >> $GITHUB_ENV
 
-    - run: echo $JULIA_FRANKLIN_WEBSITE_URL
-    - run: echo $JULIA_FRANKLIN_PREPATH
+    # - run: echo $JULIA_FRANKLIN_WEBSITE_URL
+    # - run: echo $JULIA_FRANKLIN_PREPATH
 
-    - name: Install python
-      uses: actions/setup-python@v1
-      with:
-        python-version: '3.x'
+    # - name: Install python
+    #   uses: actions/setup-python@v1
+    #   with:
+    #     python-version: '3.x'
 
     # - name: Install matplotlib
     #   run: pip install matplotlib
@@ -64,20 +64,20 @@ jobs:
             import Franklin;
             Franklin.optimize()'
 
-    - name: Deploy (pull request previews)
-      if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        BRANCH: gh-pages
-        FOLDER: __site
-        REPOSITORY_NAME: JuliaHealth/juliahealth.github.io-previews
-        SSH: true
-        TARGET_FOLDER: "previews/PR${{ github.event.number }}"
+    # - name: Deploy (pull request previews)
+    #   if: github.event_name == 'pull_request' && github.repository == github.event.pull_request.head.repo.full_name
+    #   uses: JamesIves/github-pages-deploy-action@releases/v3
+    #   with:
+    #     BRANCH: gh-pages
+    #     FOLDER: __site
+    #     REPOSITORY_NAME: JuliaHealth/juliahealth.github.io-previews
+    #     SSH: true
+    #     TARGET_FOLDER: "previews/PR${{ github.event.number }}"
 
-    - name: Deploy (main)
-      if: github.ref == 'refs/heads/dev' && (github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        BRANCH: master
-        FOLDER: __site
-        SSH: true
+    # - name: Deploy (main)
+    #   if: github.ref == 'refs/heads/dev' && (github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    #   uses: JamesIves/github-pages-deploy-action@releases/v3
+    #   with:
+    #     BRANCH: master
+    #     FOLDER: __site
+    #     SSH: true
